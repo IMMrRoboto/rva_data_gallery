@@ -1,6 +1,6 @@
 
 
-d3.json("static/budget_sunbirst.json").then(function(result){make_graph(result);});
+d3.json("static/munged_data/budget_sunbirst.json").then(function(result){make_graph(result);});
 
 function make_graph(data) {
 
