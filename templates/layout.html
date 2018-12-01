@@ -4,17 +4,19 @@
 
 <head>
 <meta charset="utf-8">
-<title>RVA Data Gallery</title>
+
+<title>{% block title %}RVA Data Gallery{% endblock %}</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
 <!-- CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 crossorigin="anonymous">
 <link href="/static/style.css" type="text/css" rel="stylesheet">
-<link href="/static/css/2018_city_budget_style.css" type="text/css" rel="stylesheet">
 
+{% block styles %} {% endblock %}
 <!-- JS -->
-
+{% block earlyscripts %} {% endblock %}
 </head>
 <body>
 <header>
@@ -25,20 +27,7 @@ crossorigin="anonymous">
   <div id="container">
 
     <div class="row">
-      <div id="org_chart" class="col-sm-12">
-        <!--p>Org Chart Area</p-->
-        <div id="svg-container" class="col-md-8 col-sm-12">
-            <svg width="800" height="800"></svg>
-	</div>
-	<div id="details-container" class="col-md-4 col-sm-12" >
-	     <ul id="tree_details">
-		
-	    </ul>
-	    <p id="sib-title">Immediately subordinate budget items:</p>
-	    <ul id="sibling-list"></ul>
-        </div>
-      </div>
-      
+      {% block content %} {% endblock %}      
     </div>
   </div>
 
@@ -50,7 +39,6 @@ crossorigin="anonymous">
 
   <!-- JS -->
 
-  
   <!--script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.0/d3.min.js"></script-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -58,7 +46,8 @@ crossorigin="anonymous">
   crossorigin="anonymous"></script>
   <!--script src="main.js"></script-->
   <!--script src="/static/js/tree.js"></script-->
-  <script src="/static/js/2018_city_budget_sunbirst.js"></script>
+  {% block scripts %} {% endblock %}
+
 
 </footer>
 

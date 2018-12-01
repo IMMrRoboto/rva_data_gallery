@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}2018  | {{ super() }}{% endblock %}
+
+{% block styles %}
+  <link href="/static/css/2018_city_budget_style.css" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+      <div id="org_chart" class="col-sm-12">
+        <!--p>Org Chart Area</p-->
+        <div id="svg-container" class="col-md-8 col-sm-12">
+            <svg width="800" height="800"></svg>
+	</div>
+	<div id="details-container" class="col-md-4 col-sm-12" >
+	     <ul id="tree_details">
+		
+	    </ul>
+	    <p id="sib-title">Immediately subordinate budget items:</p>
+	    <ul id="sibling-list"></ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/2018_city_budget_sunbirst.js"></script>
+{% endblock %}
+
