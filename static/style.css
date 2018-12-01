@@ -1,0 +1,55 @@
+header {
+  padding: 0 40px;
+  border-bottom: 2px solid;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+#container {
+  overflow: hidden;
+}
+
+#svg-container {
+  padding: 30px;
+  height: 750px;
+}
+
+#tree_details {
+  padding-top: 50px;
+  list-style: none;
+  padding-left: 0;
+}
+
+#tree_details ul {
+  padding-top: 20px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.budg-item {
+  padding-left: 40px;
+  font-size: 18px;
+}
+
+#sib-title {
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+#sibling-list {
+   list-style-type: decimal;
+}
+.line-item {
+  font-size: 24px;
+  font-weight: bold;
+}

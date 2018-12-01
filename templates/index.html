@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html lang="us">
+
+<head>
+<meta charset="utf-8">
+<title>RVA Data Gallery</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+crossorigin="anonymous">
+<link href="/static/style.css" type="text/css" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<!-- JS -->
+
+</head>
+<body>
+<header>
+<h1 style="display:inline-block;">RVA Data Gallery...   </h1>
+<p style="display:inline-block;font-size: 20px;font-style: italic;">coming soon</p>
+<p>In the meantime, enjoy this interactive exploration of Richmond City's 2018 budget (<a href="https://data.richmondgov.com/Well-Managed-Government/City-Budget-General-Fund/7nru-hsrx">source</a>).</p><p>Click through the sections of the pie to dive deeper into that particular line item - click the center in the circle to come back up a level.  Enjoy!</p>
+</header>
+  <div id="container">
+
+    <div class="row">
+      <div id="org_chart" class="col-sm-12">
+        <!--p>Org Chart Area</p-->
+        <div id="svg-container" class="col-md-8 col-sm-12">
+            <svg width="800" height="800"></svg>
+	</div>
+	<div id="details-container" class="col-md-4 col-sm-12" >
+	     <ul id="tree_details">
+		
+	    </ul>
+	    <p id="sib-title">Immediately subordinate budget items:</p>
+	    <ul id="sibling-list"></ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<footer>
+  <!--script type="text/javascript" src="budget_graph.json"></script-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
+    //var treeData = data;
+    //var treeData= jQuery.getJSON( "static/budget_graph.json", function(json) {
+    //    return json.responseJSON;
+    //});
+    //console.log(treeData);
+  </script>
+  <!-- JS -->
+
+  
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.0/d3.min.js"></script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+  <!--script src="main.js"></script-->
+  <!--script src="/static/js/tree.js"></script-->
+  <script src="/static/js/sunbirst.js"></script>
+
+</footer>
+
+</body>
+</html>
