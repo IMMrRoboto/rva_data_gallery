@@ -1,5 +1,42 @@
+.no-padding {padding:0 !important;}
+
 header {
   padding: 0 40px;
   border-bottom: 2px solid;
 }
 
+#menu-slider {
+	float: left;
+    position: absolute;
+    z-index: 10;
+    background-color: #fff;
+    padding: 0 20px 0 0;
+    max-width: 400px;
+    min-width: 20px;
+    min-height: 800px;
+	box-shadow: 5px -5px 5px -5px #333;
+	background-color: springgreen;
+}
+
+#menu-slider.open {
+	background-color: #fff;
+}
+
+#menu-slider-icon {
+	margin-right: -15px;
+    float: right;
+    margin-top: 20px;
+}
+
+#FAQaccordion {
+    display: none;
+	margin-top:40px;
+    padding: 0px 20px 20px 40px;
+	background-color: #fff;	
+}
+
+#FAQaccordion .card{min-width: 320px;}
+
+.card-header {background-color:steelblue; margin: 0 -20px 0 -40px}
+.card-header button {color:lightgray;}
+.card-header button.collapsed {color:#fff;}

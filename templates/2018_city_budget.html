@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
 
-{% block title %}2018  | {{ super() }}{% endblock %}
+{% block title %}2018 City Budget | {{ super() }}{% endblock %}
 
 {% block styles %}
   <link href="/static/css/2018_city_budget_style.css" type="text/css" rel="stylesheet">
 {% endblock %}
+
+{% block what_this %} {{ what_this|safe }} {%endblock %}
+{% block how_to_use %} {{ how_to_use|safe }} {%endblock %}
+{% block where_data %} {{ where_data|safe }} {%endblock %}
+{% block shoutouts %} {{ shoutouts|safe }} {%endblock %}
+
 
 {% block content %}
       <div id="org_chart" class="col-sm-12">

@@ -1,0 +1,44 @@
+#map {
+	height: 500px;
+	width: 90%;
+	margin: 0 auto;
+	border: 1px solid #6e9489;
+	border-radius: 2px;
+	padding: 0 5px;
+}
+
+#wikimap { margin-top: 30px; }
+
+.gm-style-iw { top: 0 !important; left: 0 !important; padding-left: 15px; }
+
+.infowindow a, .infowindow.preview { 
+	display: block; 
+	margin-top: 15px;
+}
+
+.infowindow h3 { 
+	background-color: #79BD9A; 
+	width: 100%; 
+	color: #fff; 
+	padding: 0 5px 0 2px; 
+	font-weight: 600; 
+	font-size: 16px; 
+	line-height: 24px; 
+	margin: 0; 
+	border-radius: 2px;
+}
+.infowindow p { 
+	color: #000; 
+	padding-left: 2px; 
+	padding-right: 5px; 
+	margin: 0; 
+	padding-top: 1em; 
+	padding-bottom: .5em; 
+	background-color: #fff;
+}
+.credits {
+	font-size: 8px; 
+	text-align: right; 
+	color: #ccc; 
+}
+

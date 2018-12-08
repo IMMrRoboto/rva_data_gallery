@@ -3,8 +3,17 @@
 }
 
 #svg-container {
-  padding: 30px;
+  padding: 30px 30px 30px 60px;
   height: 750px;
+}
+
+#svg-container svg {
+	padding-left: 30px;
+}
+
+#svg-container .link-hover {
+	stroke:black;
+	stroke-width:2px;
 }
 
 #tree_details {
@@ -19,6 +28,10 @@
   padding-left: 0;
 }
 
+#tree_details .line-item{
+    cursor: pointer;
+}
+
 .budg-item {
   padding-left: 40px;
   font-size: 18px;
@@ -31,6 +44,10 @@
 
 #sibling-list {
    list-style-type: decimal;
+}
+
+#sibling-list li {
+    cursor: pointer;
 }
 .line-item {
   font-size: 24px;

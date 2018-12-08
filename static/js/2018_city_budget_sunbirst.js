@@ -2,9 +2,11 @@
 
 d3.json("static/munged_data/budget_sunbirst.json").then(function(result){make_graph(result);});
 
+var activeItem;
+
 function make_graph(data) {
 
-console.log(data);
+//console.log(data);
 
 var arc = d3.arc()
     .startAngle(d => d.x0)
@@ -22,6 +24,8 @@ var format = d3.format(",d");
 var width = 700;//932;
 
 var radius = width / 6;
+    
+var last_node;
 
 var partition = data => {
   const root = d3.hierarchy(data)
@@ -49,22 +53,22 @@ var partition = data => {
     .selectAll("path")
     .data(root.descendants().slice(1))
     .enter().append("path")
-      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-      .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
-      .attr("stroke-opacity",0.5)
-      .attr("stroke-width", .5)
-      .attr("stroke", "white")
-      .attr("d", d => arc(d.current));
+    .attr("class", d =>"node_id_"+String(d.data.id))
+    .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+    .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
+    .attr("stroke-opacity",0.5)
+    .attr("stroke-width", .5)
+    .attr("stroke", "white")
+    .attr("d", d => arc(d.current));
 
   path.filter(d => d.children)
       .style("cursor", "pointer")
-      .on("click.sp", clicked);
-
-  path.filter(d => d)
-      .style("cursor", "pointer")
+      .on("click.sp", clicked)
       .on("click.bt", update_details);
-      
 
+  path.style("cursor", "pointer")
+      ;
+      
   path.append("title")
       .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
 
@@ -85,69 +89,122 @@ var partition = data => {
       .attr("r", radius)
       .attr("fill", "none")
       .attr("pointer-events", "all")
-      .on("click", clicked);
+      .attr("class", "back-up")
+      .on("click.a", clicked)
+      .on("click.b", update_details_up);
       
 d3.select("circle").append("text").attr("dy", "0.35em")
       .attr("fill-opacity", 1)
-      .attr("transform", d => labelTransform(d.current)).text("Up a level");
+      //.attr("transform", d => labelTransform(d.current)).text("Up a level");
 
 update_details(root);
 
-   function get_parents(p, parents, p_budgets) {
-	try{
-	var p = p.parent;
-	parents.push(p.data.name);
-	p_budgets.push(p.value);
-	//console.log(p.data.name);
-	get_parents(p, parents, p_budgets);
-	}catch (err){};
-	return [parents, p_budgets];
+function get_parents(p, parents, parents_ids, p_budgets) {
+    try{
+    var p = p.parent;
+    parents.push(p.data.name);
+    parents_ids.push(p.data.id);
+    p_budgets.push(p.value);
+    //console.log(p.data.name);
+    get_parents(p, parents, parents_ids, p_budgets);
+    }catch (err){};
+    return [parents, parents_ids, p_budgets];
+}    
+    
+function update_details_up(p) {
+   var elem = last_node.parent;
+   if(elem == null){
+       elem = root;
    }
+   update_details(elem,);
+}
 
-   function update_details(p) {
+function update_details(p) {
 	console.log(p);
+    last_node = p;
 	d3.select("#tree_details").html('');
 	d3.select("#sibling-list").html('');
-	var parents = []
-	var p_budgets = []
+	var parents = [];
+    var parents_ids = [];
+	var p_budgets = [];
 
 	parents.push(p.data.name.replace(/_/g," "));
+    parents_ids.push(p.data.id);
 	p_budgets.push(p.value);
 	
-	var arr = get_parents(p, parents, p_budgets);
-	
+    get_parents(p, parents, parents_ids, p_budgets);
+
 	var i;
-	for (i = arr[0].length-1; i >=0; i--) { 
+	for (i = parents.length-1; i >=0; i--) { 
 	    d3.select("#details-container")
 		.style("display","block");
 	    d3.select("#tree_details")
 		.append("li").append("ul").attr("class","ul-"+i)
-		.append("li").attr("class","line-item")
-		.text(arr[0][i]);
-	//console.log(arr[1][i]);
-	    var b_str = '$' + arr[1][i].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+		.append("li").attr("class","line-item node_id_" + parents_ids[i])
+		.text(parents[i].replace(/_/g, " "));
+
+	    var b_str = '$' + p_budgets[i].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 	    d3.select("#tree_details li ul.ul-"+i)
 		.append("li").attr("class","budg-item")
 		.text(b_str);
 	}
 
-	//d3.select("#details-container")
-	  //.append("p").attr("id","sib-title")
-	  //.text("Child line items");
-
 	sibs = p.children;
+    if(!sibs){sibs=[];}
 	for (i=0; i< sibs.length; i++) {
 	
 		var sib_name = sibs[i].data.name;
+        var sib_id = sibs[i].data.id;
 		var sib_b = '$' + sibs[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
 		d3.select("#sibling-list")
-		//.append("ul").attr("id","sibling-list")
-		.append("li").attr("class","sib-item")
-		.html("<b>"+sib_name + "</b>: "+sib_b);
+		.append("li").attr("class", "node_id_" + sib_id)
+        .html("<b>"+sib_name + "</b>: "+sib_b);
 	}
-   }
 
+    $('#sibling-list li').mouseover(function(){
+        var node_id = $(this).attr('class');
+        console.log(node_id);
+        d3.select("path."+node_id)
+                  .attr("stroke", "steelblue")
+                  .attr("stroke-width", "2px")
+                  .attr("stroke-opacity", "1");
+    });
+   $('#sibling-list li').mouseout(function(){
+        var node_id = $(this).attr('class');
+        console.log("out");
+        d3.select("path."+node_id)
+              .attr("stroke", "white")
+              .attr("stroke-width", ".5")
+              .attr("stroke-opacity", ".5");
+    })
+     $('#sibling-list li').click(function(){
+        var node_id = $(this).attr('class');
+        console.log("click");
+        d3.select("path."+node_id)
+              .attr("stroke", "white")
+              .attr("stroke-width", ".5")
+              .attr("stroke-opacity", ".5");
+        $("path."+node_id).d3Click();
+    })
+       
+    $('#tree_details .line-item').click(function(){
+        var clk_cnt = parseInt($(this).parent().attr('class').split("-")[1])+1;
+        delayD3click(clk_cnt);
+    })          
+       
+   }
+    
+  function delayD3click(counter){
+      if(counter > 0){
+        setTimeout(function(){
+          $("circle.back-up").d3Click();
+          counter--;
+          delayD3click(counter);
+        }, 2);
+      }
+    }
+    
   function clicked(p) {
     //update_details(p);
     parent.datum(p.parent || root);
@@ -196,11 +253,24 @@ update_details(root);
     return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
   }
 
-  //return svg.node();
+  change_slider_height();
+
 }
 
 
+$(document).ready(function(){
+  $("#svg-container svg").click(function() {change_slider_height();});
+});
 
-
-
-
+function change_slider_height(){
+    console.log("asdasda");
+    $('#menu-slider').height($('#container').height());
+}
+// Complements of Stackoverflow user: handler
+// https://stackoverflow.com/questions/9063383/how-to-invoke-click-event-programmatically-in-d3
+jQuery.fn.d3Click = function () {
+  this.each(function (i, e) {
+    var evt = new MouseEvent("click");
+    e.dispatchEvent(evt);
+  });
+};
