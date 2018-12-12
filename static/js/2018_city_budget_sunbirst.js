@@ -166,7 +166,7 @@ function update_details(p) {
         var node_id = $(this).attr('class');
         console.log(node_id);
         d3.select("path."+node_id)
-                  .attr("stroke", "steelblue")
+                  .attr("stroke", "#011627")
                   .attr("stroke-width", "2px")
                   .attr("stroke-opacity", "1");
     });

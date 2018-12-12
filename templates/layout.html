@@ -21,11 +21,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+crossorigin="anonymous">
 <link href="/static/style.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 {% block styles %} {% endblock %}
 <!-- JS -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-6755978580960316",
@@ -36,76 +40,78 @@ crossorigin="anonymous">
 </head>
 <body>
 <header>
-<h1 style="display:inline-block;">RVA Data Gallery...   </h1>
+    <h1 style="display:inline-block;"><a href="/">RVA Data Gallery...   </a></h1>
 <p style="display:inline-block;font-size: 20px;font-style: italic;">coming soon</p>
-<p>In the meantime, enjoy this interactive exploration of Richmond City's 2018 budget (<a href="https://data.richmondgov.com/Well-Managed-Government/City-Budget-General-Fund/7nru-hsrx">source</a>).</p><p>Click through the sections of the pie to dive deeper into that particular line item - click the center in the circle to come back up a level.  Enjoy!</p>
+
 </header>
 
   <div id="container">
-	<div id="menu-slider" class="sno-padding">
-		<i id="menu-slider-icon"class="fa fa-chevron-right" aria-hidden="true"></i>
-		<div class="accordion" id="FAQaccordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          What is this?
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#FAQaccordion">
-      <div class="card-body">
-        <p>{% block what_this %} {%endblock %}</p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          How do I use it?
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#FAQaccordion">
-      <div class="card-body">
-        <p>{% block how_to_use %} {%endblock %}</p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Where'd you get the data?
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#FAQaccordion">
-      <div class="card-body">
-        <p>{% block where_data %} {%endblock %}</p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-          Shout outs
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#FAQaccordion">
-      <div class="card-body">
-        <p>{% block shoutouts %} {%endblock %}</p>
-      </div>
-    </div>
-  </div>
-</div>
-	</div>
-    <div class="row">
+	
+    <div class="">
       {% block content %} {% endblock %}      
+    
+        <div id="menu-slider" class="sno-padding">
+            <i id="menu-slider-icon"class="fa fa-chevron-right" aria-hidden="true"></i>
+            <div class="accordion" id="FAQaccordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      What is this?
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#FAQaccordion">
+                  <div class="card-body">
+                    <p>{% block what_this %} {%endblock %}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      How do I use it?
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#FAQaccordion">
+                  <div class="card-body">
+                    <p>{% block how_to_use %} {%endblock %}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Where'd you get the data?
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#FAQaccordion">
+                  <div class="card-body">
+                    <p>{% block where_data %} {%endblock %}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingFour">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                      Shout outs
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#FAQaccordion">
+                  <div class="card-body">
+                    <p>{% block shoutouts %} {%endblock %}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
   </div>
 

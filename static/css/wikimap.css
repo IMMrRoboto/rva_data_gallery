@@ -1,13 +1,16 @@
-#map {
+#mapid {
 	height: 500px;
 	width: 90%;
 	margin: 0 auto;
 	border: 1px solid #6e9489;
 	border-radius: 2px;
-	padding: 0 5px;
+    margin-top: 40px;
+/*    margin-left: 15x;*/
+/*    margin-right: 15px;*/
+/*	padding-left: 20px;*/
 }
 
-#wikimap { margin-top: 30px; }
+#wikimap { margin-top: 0px; padding: 30px 55px;}
 
 .gm-style-iw { top: 0 !important; left: 0 !important; padding-left: 15px; }
 
@@ -17,7 +20,7 @@
 }
 
 .infowindow h3 { 
-	background-color: #79BD9A; 
+	background-color: #2EC4B6; 
 	width: 100%; 
 	color: #fff; 
 	padding: 0 5px 0 2px; 
@@ -28,7 +31,7 @@
 	border-radius: 2px;
 }
 .infowindow p { 
-	color: #000; 
+/*	color: #000; */
 	padding-left: 2px; 
 	padding-right: 5px; 
 	margin: 0; 
@@ -36,9 +39,15 @@
 	padding-bottom: .5em; 
 	background-color: #fff;
 }
+.infowindow a:hover {
+    text-decoration: none;
+}
 .credits {
 	font-size: 8px; 
 	text-align: right; 
-	color: #ccc; 
+/*	color: #ccc; */
 }
 
+.leaflet-control-attribution a {
+/*    color: #2EC4B6;*/
+}

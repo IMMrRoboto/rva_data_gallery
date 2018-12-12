@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function(){
 
   $('#menu-slider').click(function(e){
@@ -22,6 +24,13 @@ $(document).ready(function(){
 		$("#menu-slider-icon").toggleClass( "fa-chevron-right" ).toggleClass( "fa-chevron-left" );
 
   }
+    
+  $(".mdc-card").click(function(e){
+     var $a = $(this).find("a")[0]['href']; 
+//      console.log($a);
+      window.location.href = $a;
+
+  });
 
 
 });

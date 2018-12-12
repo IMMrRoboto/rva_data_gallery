@@ -1,81 +1,106 @@
-<!doctype html>
+{% extends "layout.html" %}
 
-<html lang="us">
+{% block title %}{{ super() }}{% endblock %}
 
-<head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130345199-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+{% block styles %}
+    <style>#menu-slider{display: none;}</style>
+{% endblock %}
 
-  gtag('config', 'UA-130345199-1');
-</script>
-<meta charset="utf-8">
-<title>RVA Data Gallery</title>
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<!-- CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-crossorigin="anonymous">
-<link href="/static/style.css" type="text/css" rel="stylesheet">
-<link href="/static/css/2018_city_budget_style.css" type="text/css" rel="stylesheet">
-
-<!-- JS -->
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6755978580960316",
-    enable_page_level_ads: true
-  });
-</script>
-</head>
-<body>
-<header>
-<h1 style="display:inline-block;">RVA Data Gallery...   </h1>
-<p style="display:inline-block;font-size: 20px;font-style: italic;">coming soon</p>
-<p>In the meantime, enjoy this interactive exploration of Richmond City's 2018 budget (<a href="https://data.richmondgov.com/Well-Managed-Government/City-Budget-General-Fund/7nru-hsrx">source</a>).</p><p>Click through the sections of the pie to dive deeper into that particular line item - click the center in the circle to come back up a level.  Enjoy!</p>
-</header>
-  <div id="container">
-
-    <div class="row">
-      <div id="org_chart" class="col-sm-12">
-        <!--p>Org Chart Area</p-->
-        <div id="svg-container" class="col-md-8 col-sm-12">
-            <svg width="800" height="800"></svg>
-	</div>
-	<div id="details-container" class="col-md-4 col-sm-12" >
-	     <ul id="tree_details">
-		
-	    </ul>
-	    <p id="sib-title">Immediately subordinate budget items:</p>
-	    <ul id="sibling-list"></ul>
-        </div>
-      </div>
+{% block content %}
       
-    </div>
-  </div>
+        <!--p>Org Chart Area</p-->
+        <div id="article-container">
+            <article class="col-xs-12 col-ms-10 col-ms-offset-2 col-sm-8 col-md-4">
+                <!--div class="card card-plain card-blog">
+                    <div class="card-image">
+                        <a href="/2018_city_budget" title="Richmond City's 2018 Budget">
+                            <img width="240" height="240" src="/static/images/2018_budget.png"  alt="Richmond City's 2018 Budget">
+                        </a>
+                    </div>
+                    <div class="content">
+						<h4 class="card-title entry-title">
+							<a class="blog-item-title-link" href="http://connorriley.me/wikipedia_map/" title="The Wikipedia Map of…" rel="bookmark">
+								Richmond City's 2018 Budget
+                            </a>
+						</h4>
+						<p class="card-description">An interactive exploration of Richmond City's 2018 budget. Click through the sections of the pie to dive deeper. Enjoy!</p>
+					</div>
+				</div-->
+                <div class="mdc-card mdc-card mdc-elevation--z8">
+                    <div class="mdc-card__media mdc-card__media--square" style="background-image: url('/static/images/2018_budget.png');">
+                        <!--div class="mdc-card__media-content">Title</div-->
+                    </div>
+                    <!-- ... content ... -->
+                    <div class="content">
+						<h4 class="mdc-typography--headline3">
+							<a class="blog-item-title-link" href="/2018_city_budget" title="Richmond's 2018 City Budget " rel="bookmark">
+								Richmond City's 2018 Budget
+                            </a>
+						</h4>
+						<p class="mdc-typography--headline5">An interactive exploration of Richmond City's 2018 budget. Click through the sections of the pie to dive deeper. Enjoy!</p>
+					</div>
+                    <!--div class="mdc-card__actions">
+                        <div class="mdc-card__action-buttons">
+                          <button class="mdc-button mdc-card__action mdc-card__action--button">Action 1</button>
+                          <button class="mdc-button mdc-card__action mdc-card__action--button">Action 2</button>
+                        </div>
+                        <!--div class="mdc-card__action-icons">
+                          <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+                          <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+                        </div>
+                    </div-->
+                </div>
+            </article>
+            
+             <article class="col-xs-12 col-ms-10 col-ms-offset-2 col-sm-8 col-md-4">
+                <!--div class="card card-plain card-blog">
+												<div class="card-image">
+								<a href="http://connorriley.me/wikipedia_map/" title="The Wikipedia Map of…">
+									<img width="240" height="240" src="http://connorriley.me/wp-content/uploads/2016/01/wikimap.png" class="attachment-hestia-blog size-hestia-blog wp-post-image" alt="Map of Wikipedia Articles" srcset="http://connorriley.me/wp-content/uploads/2016/01/wikimap.png 600w, http://connorriley.me/wp-content/uploads/2016/01/wikimap-150x150.png 150w, http://connorriley.me/wp-content/uploads/2016/01/wikimap-300x300.png 300w" sizes="(max-width: 240px) 100vw, 240px">								</a>
+							</div>
+											<div class="content">
+						<h6 class="category"><a href="http://connorriley.me/category/google-apis/" title="View all posts in Google APIs" rel="tag">Google APIs</a> </h6>
+						<h4 class="card-title entry-title">
+							<a class="blog-item-title-link" href="http://connorriley.me/wikipedia_map/" title="The Wikipedia Map of…" rel="bookmark">
+								The Wikipedia Map of…							</a>
+						</h4>
+						<p class="card-description">Explore the city of your choice in a whole new way with mapped Wikipedia articles.</p>
+					</div>
+				</div-->
+                 <div class="mdc-card mdc-elevation--z8">
+                    <div class="mdc-card__media mdc-card__media--square" style="background-image: url('/static/images/rva_wiki_map.png');">
+                        <!--div class="mdc-card__media-content">Title</div-->
+                    </div>
+                    <!-- ... content ... -->
+                    <div class="content">
+						<h4 class="mdc-typography--headline3">
+							<a class="blog-item-title-link" href="/wikimap" title="Wikipedia Map of RVA " rel="bookmark">
+								The Wikipedia Map of Richmond
+                            </a>
+						</h4>
+						<p class="mdc-typography--headline5">Explore Richmond in a whole new way - learn interesting facts and the history of various locations around town thanks to geo-tagged Wikipedia articles.</p>
+					</div>
+                    <!--div class="mdc-card__actions">
+                        <div class="mdc-card__action-buttons">
+                          <button class="mdc-button mdc-card__action mdc-card__action--button">Action 1</button>
+                          <button class="mdc-button mdc-card__action mdc-card__action--button">Action 2</button>
+                        </div>
+                        <!--div class="mdc-card__action-icons">
+                          <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+                          <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+                        </div>
+                    </div-->
+                </div>
+            </article>
+            
+             <article class="col-xs-12 col-ms-10 col-ms-offset-2 col-sm-8 col-md-4">
+                
+            </article>
+        </div>
+      
+      
+{% endblock %}
 
-<footer>
-  <!--script type="text/javascript" src="budget_graph.json"></script-->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+{% block scripts %}
 
-  <!-- JS -->
-
-  
-  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.0/d3.min.js"></script-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-  crossorigin="anonymous"></script>
-  <!--script src="main.js"></script-->
-  <!--script src="/static/js/tree.js"></script-->
-  <script src="/static/js/2018_city_budget_sunbirst.js"></script>
-
-</footer>
-
-</body>
-</html>
+{% endblock %}

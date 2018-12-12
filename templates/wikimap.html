@@ -3,22 +3,37 @@
 {% block title %}Wikipedia Map | {{ super() }}{% endblock %}
 
 {% block styles %}
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
   <link href="/static/css/wikimap.css" type="text/css" rel="stylesheet">
 {% endblock %}
 
+{% block what_this %}Many Wikipedia articles are tagged with geo coordinates. The teal circles below represent Richmond's Wikipedia articles. The larger the circle, the higher the article's popularity/ relevance (as determined by its length and the number of inbound links). This is a tool for both an orientation of Richmond as well as learning interesting facts and history about our amazing town.{%endblock %}
+
+{% block how_to_use %}Hover over a circle for the name of the article, click on it for a preview. Want to know even more? Clicking the preview pop-up will take you to the full Wikipedia article. Clicking "Remove Marker" in the pop-up will allow you to explore overlapping markers,but don't worry - refresh the page and the marker will come right back.{%endblock %}
+
+{% block where_data %}The data comes from Wikipedia, but the <a href="http://www.geonames.org/" target="_blank">GeoNames</a> API filters articles based on geography, calculates the article relevence score.{%endblock %}
+
+{% block shoutouts %}This build inspired by a blog post by <a href="https://fogonwater.com/" target="_blank">Chris McDowall</a>.{%endblock %}
+
 {% block content %}
-      <div id="wikimap" class="row">
-<h2 style="padding: 0 5%; color: #6e9489;">The Wikipedia Map of Richmond</h2>
-<h3 style="padding: 0 5%;">Tell me about RVA…</h3>
-<p style="padding: 0 5%;font-size: .8em;line-height: 1.4em;">Many Wikipedia articles are tagged with geo coordinates. The teal circles below represent Richmond's Wikipedia articles. The larger the circle, the higher the popularity/ relevance (as determined by article length and number of links to the article). Hover over a circle for the name of the article, click on it for a preview. Want to know even more? Clicking the preview pop-up will take you to the full Wikipedia article.  This is a great tool for both an orientation of Richmond as well as learning interesting facts and history about our amazing town.</p>
+      <div id="wikimap" class="">
+<h2>The Wikipedia Map of Richmond</h2>
+<h3>Tell me about RVA…</h3>
+<p>Many Wikipedia articles are tagged with geo coordinates. The circles below represent Richmond's Wikipedia articles. The larger the circle, the higher the article's popularity/ relevance (as determined by its length and the number of inbound links). This is a tool for both an orientation of Richmond as well as learning interesting facts and history about our amazing town.  Click the circles for details, click the details to view the full Wikipedia article.</p>
 
 
-    <div id="map"></div>
-<p class="credits" style="padding: 0 5%;">Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Wikipedia feed by <a href="http://www.geonames.org/" target="_blank">GeoNames</a>. Developed by <a href="http://connorriley.me" target="_blank">Connor Riley</a></p>
+    <div id="mapid"></div>
+<p class="credits" style="padding: 0 5%;">Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Wikipedia feed by <a href="http://www.geonames.org/" target="_blank">GeoNames</a></p>
+          </div>
 {% endblock %}
 
 {% block scripts %}
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKAzR0ElcSvtF6nz8Kvy-Z6M0flE47wck"></script>
+  <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB5VCzEOiGbNxRrU-Pe_yypwF8njUjcNk"></script-->
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
   <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
   <script src="/static/js/wikimap.js"></script>
 {% endblock %}
