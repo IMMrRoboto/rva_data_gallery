@@ -1,1 +1,1 @@
-This script (also provided as a Jupyter Notebook) is used to create the json file used to create www.rvadata.gallery/2018_rva_budget
+This script (also provided as a Jupyter Notebook) converts the line items of the city budget into a tree structure then exports it as a json file which is used to create the interactive D3.js graph at www.rvadata.gallery/2018_rva_budget
